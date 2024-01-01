@@ -31,11 +31,10 @@ class OrderController extends Controller
 
         $midtrans = new CreatePaymentUrlService();
         $paymentUrl = $midtrans->getPaymentUrl($order->load('user', 'orderItems'));
-        // dd($paymentUrl);
+
         $order->update([
             'payment_url' => $paymentUrl
         ]);
-
         return response()->json([
             'data' => $order
         ]);
